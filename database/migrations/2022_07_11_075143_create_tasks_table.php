@@ -17,7 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('body');
             $table->boolean('done')->default(false);
-            $table->foreignId('projects_id');
+            $table->foreignId('project_id');
+            $table->foreign('project_id')
+                ->references('id')
+                ->on('projects')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
